@@ -240,3 +240,136 @@ renderMyMessages();
 
 renderHerMessages();
 renderMyMessages();
+/* ==========================
+COUNTERS PAGE
+========================== */
+
+function saveKissDate(){
+
+const value =
+document.getElementById("kissDate");
+
+if(!value) return;
+
+localStorage.setItem(
+"kissUpdated",
+value.value
+);
+
+loadCounterDates();
+
+}
+
+function saveHugDate(){
+
+const value =
+document.getElementById("hugDate");
+
+if(!value) return;
+
+localStorage.setItem(
+"hugUpdated",
+value.value
+);
+
+loadCounterDates();
+
+}
+
+function loadCounterDates(){
+
+const kissUpdated =
+document.getElementById("kissUpdated");
+
+const hugUpdated =
+document.getElementById("hugUpdated");
+
+if(kissUpdated){
+
+kissUpdated.innerHTML =
+"Last Updated: " +
+(localStorage.getItem("kissUpdated")
+|| "02/04/2026");
+
+}
+
+if(hugUpdated){
+
+hugUpdated.innerHTML =
+"Last Updated: " +
+(localStorage.getItem("hugUpdated")
+|| "09/03/2026");
+
+}
+
+}
+
+function daysSince(dateString){
+
+const start =
+new Date(dateString);
+
+const today =
+new Date();
+
+const diff =
+today - start;
+
+return Math.floor(
+diff /
+(1000*60*60*24)
+);
+
+}
+
+function loadRelationshipCounters(){
+
+const proposal =
+document.getElementById("proposalDays");
+
+const yes =
+document.getElementById("yesDays");
+
+const kiss =
+document.getElementById("kissDays");
+
+const hug =
+document.getElementById("hugDays");
+
+if(proposal){
+
+proposal.innerHTML =
+daysSince("2022-08-02")
++ " Days";
+
+}
+
+if(yes){
+
+yes.innerHTML =
+daysSince("2026-03-21")
++ " Days";
+
+}
+
+if(kiss){
+
+kiss.innerHTML =
+daysSince("2026-04-02")
++ " Days";
+
+}
+
+if(hug){
+
+hug.innerHTML =
+daysSince("2026-03-09")
++ " Days";
+
+}
+
+}
+
+loadCounterDates();
+
+loadRelationshipCounters();
