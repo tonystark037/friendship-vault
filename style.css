@@ -89,108 +89,81 @@ TIMELINE PAGE
 ========================== */
 
 .timeline-page{
-
-padding:80px 20px;
-max-width:1000px;
-margin:auto;
-
+    padding:80px 20px;
+    max-width:1000px;
+    margin:auto;
 }
 
 .timeline-page h1{
-
-text-align:center;
-margin-bottom:60px;
-font-size:3rem;
-
+    text-align:center;
+    margin-bottom:60px;
+    font-size:3rem;
 }
 
 .timeline{
-
-position:relative;
-padding-left:40px;
-
+    position:relative;
+    max-width:800px;
+    margin:auto;
+    padding-left:60px;
 }
 
 .timeline::before{
-
-content:"";
-position:absolute;
-left:15px;
-top:0;
-width:4px;
-height:100%;
-background:linear-gradient(
-#ff4fd8,
-#6b7cff
-);
-
+    content:"";
+    position:absolute;
+    left:20px;
+    top:0;
+    width:4px;
+    height:100%;
+    background:linear-gradient(
+        #ff4fd8,
+        #6b7cff
+    );
+    border-radius:10px;
 }
 
 .event{
-
-position:relative;
-
-background:rgba(255,255,255,.08);
-
-padding:25px;
-
-margin-bottom:30px;
-
-border-radius:20px;
-
-backdrop-filter:blur(15px);
-
-box-shadow:
-0 0 15px rgba(255,79,216,.3);
-
-transition:.4s;
-
+    position:relative;
+    background:rgba(20,20,40,0.85);
+    padding:25px;
+    margin-bottom:35px;
+    margin-left:25px;
+    border-radius:20px;
+    border:1px solid rgba(255,255,255,0.1);
+    backdrop-filter:blur(20px);
+    box-shadow:
+        0 0 20px rgba(255,79,216,0.35);
+    transition:all .4s ease;
 }
 
 .event:hover{
-
-transform:translateX(10px);
-
-box-shadow:
-0 0 25px rgba(255,79,216,.7);
-
+    transform:translateX(15px);
+    box-shadow:
+        0 0 40px rgba(255,79,216,0.7),
+        0 0 80px rgba(107,124,255,0.4);
 }
 
 .event::before{
-
-content:"";
-
-position:absolute;
-
-left:-36px;
-
-top:25px;
-
-width:20px;
-
-height:20px;
-
-border-radius:50%;
-
-background:#ff4fd8;
-
-box-shadow:
-0 0 20px #ff4fd8;
-
+    content:"";
+    position:absolute;
+    left:-48px;
+    top:28px;
+    width:20px;
+    height:20px;
+    border-radius:50%;
+    background:#ff4fd8;
+    box-shadow:
+        0 0 15px #ff4fd8,
+        0 0 30px #ff4fd8;
 }
 
 .event h2{
-
-margin:0 0 10px;
-
-color:#ff9df0;
-
+    margin:0 0 10px;
+    font-size:1.6rem;
+    color:#ff9df0;
 }
 
 .event p{
-
-margin:0;
-
-font-size:1.05rem;
-
+    margin:0;
+    font-size:1.15rem;
+    color:white;
 }
