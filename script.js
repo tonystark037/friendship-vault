@@ -373,3 +373,162 @@ daysSince("2026-03-09")
 loadCounterDates();
 
 loadRelationshipCounters();
+/* ==========================
+LOVE COUNTERS
+========================== */
+
+let kissCount =
+parseInt(localStorage.getItem("kissCount")) || 1;
+
+let hugCount =
+parseInt(localStorage.getItem("hugCount")) || 1;
+
+function updateKiss(){
+
+const count =
+document.getElementById("kissCount");
+
+const emojis =
+document.getElementById("kissEmojis");
+
+const updated =
+document.getElementById("kissUpdated");
+
+if(!count) return;
+
+count.innerHTML = kissCount;
+
+emojis.innerHTML =
+kissCount <= 20
+? "😘".repeat(kissCount)
+: `😘 × ${kissCount}`;
+
+updated.innerHTML =
+"Last Updated: " +
+(localStorage.getItem("kissUpdated")
+|| "Not Updated Yet");
+
+}
+
+function updateHug(){
+
+const count =
+document.getElementById("hugCount");
+
+const emojis =
+document.getElementById("hugEmojis");
+
+const updated =
+document.getElementById("hugUpdated");
+
+if(!count) return;
+
+count.innerHTML = hugCount;
+
+emojis.innerHTML =
+hugCount <= 20
+? "🫂".repeat(hugCount)
+: `🫂 × ${hugCount}`;
+
+updated.innerHTML =
+"Last Updated: " +
+(localStorage.getItem("hugUpdated")
+|| "Not Updated Yet");
+
+}
+
+function changeKiss(value){
+
+kissCount += value;
+
+if(kissCount < 0)
+kissCount = 0;
+
+localStorage.setItem(
+"kissCount",
+kissCount
+);
+
+localStorage.setItem(
+"kissUpdated",
+new Date().toLocaleString()
+);
+
+updateKiss();
+
+}
+
+function changeHug(value){
+
+hugCount += value;
+
+if(hugCount < 0)
+hugCount = 0;
+
+localStorage.setItem(
+"hugCount",
+hugCount
+);
+
+localStorage.setItem(
+"hugUpdated",
+new Date().toLocaleString()
+);
+
+updateHug();
+
+}
+
+function daysSince(dateString){
+
+const start =
+new Date(dateString);
+
+const today =
+new Date();
+
+const diff =
+today - start;
+
+return Math.floor(
+diff /
+(1000*60*60*24)
+);
+
+}
+
+function loadRelationshipCounters(){
+
+const proposal =
+document.getElementById("proposalDays");
+
+const yes =
+document.getElementById("yesDays");
+
+const kiss =
+document.getElementById("kissDays");
+
+const hug =
+document.getElementById("hugDays");
+
+if(proposal)
+proposal.innerHTML =
+daysSince("2022-08-02") + " Days";
+
+if(yes)
+yes.innerHTML =
+daysSince("2026-03-21") + " Days";
+
+if(kiss)
+kiss.innerHTML =
+daysSince("2026-04-02") + " Days";
+
+if(hug)
+hug.innerHTML =
+daysSince("2026-03-09") + " Days";
+
+}
+
+updateKiss();
+updateHug();
+loadRelationshipCounters();
