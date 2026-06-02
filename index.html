@@ -3,358 +3,303 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Friendship Memory Vault</title>
 
-<style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Segoe UI',sans-serif;
-}
+<title>❤️ Friendship Vault ❤️</title>
 
-body{
-background:linear-gradient(135deg,#0f172a,#1e293b);
-color:white;
-min-height:100vh;
-padding:20px;
-transition:.4s;
-}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-.light{
-background:linear-gradient(135deg,#f1f5f9,#cbd5e1);
-color:#111;
-}
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-.container{
-max-width:1200px;
-margin:auto;
-}
-
-header{
-text-align:center;
-margin-bottom:30px;
-}
-
-header h1{
-font-size:3rem;
-margin-bottom:10px;
-}
-
-header p{
-opacity:.8;
-}
-
-.toggle{
-position:fixed;
-top:20px;
-right:20px;
-padding:10px 15px;
-border:none;
-border-radius:12px;
-cursor:pointer;
-font-size:16px;
-}
-
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-gap:20px;
-}
-
-.card{
-background:rgba(255,255,255,0.08);
-backdrop-filter:blur(12px);
-border-radius:20px;
-padding:20px;
-box-shadow:0 8px 20px rgba(0,0,0,.3);
-}
-
-.light .card{
-background:white;
-}
-
-.card h2{
-margin-bottom:15px;
-}
-
-input,textarea{
-width:100%;
-padding:12px;
-margin:8px 0;
-border:none;
-border-radius:10px;
-outline:none;
-}
-
-button{
-padding:10px 15px;
-border:none;
-border-radius:10px;
-cursor:pointer;
-font-weight:bold;
-}
-
-.addBtn{
-background:#22c55e;
-color:white;
-margin-top:5px;
-}
-
-.item{
-background:rgba(255,255,255,0.12);
-padding:12px;
-margin-top:10px;
-border-radius:12px;
-position:relative;
-word-wrap:break-word;
-}
-
-.light .item{
-background:#e2e8f0;
-}
-
-.delete{
-position:absolute;
-right:10px;
-top:10px;
-background:red;
-color:white;
-padding:4px 8px;
-font-size:12px;
-}
-
-footer{
-text-align:center;
-margin-top:40px;
-opacity:.7;
-}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<button class="toggle" onclick="toggleTheme()">🌙 Theme</button>
+<div id="stars"></div>
 
-<div class="container">
+<!-- NAVBAR -->
 
-<header>
-<h1>❤️ Friendship Memory Vault ❤️</h1>
-<p>A place for memories, promises, poems and special moments.</p>
-</header>
+<nav class="navbar">
+    <div class="logo">
+        ❤️ Friendship Vault
+    </div>
 
-<div class="grid">
+    <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#story">Our Story</a></li>
+        <li><a href="#poetry">Poetry</a></li>
+        <li><a href="#letters">Letters</a></li>
+        <li><a href="#promises">Promises</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#capsule">Capsule</a></li>
+    </ul>
 
-<!-- Dates -->
-<div class="card">
-<h2>📅 Special Dates</h2>
+    <button id="themeBtn">
+        🌙
+    </button>
+</nav>
 
-<input id="dateTitle" placeholder="Event Name">
-<input id="dateValue" type="date">
+<!-- HERO -->
 
-<button class="addBtn" onclick="addItem('dates')">
-Add Date
-</button>
+<section id="home" class="hero">
 
-<div id="dates"></div>
-</div>
+    <div class="hero-content">
 
-<!-- Promises -->
-<div class="card">
-<h2>🤝 Promises</h2>
+        <h1>
+            Atharva ❤️ Friend
+        </h1>
 
-<textarea id="promiseText" placeholder="Write a promise..."></textarea>
+        <p>
+            Every memory has a story.
+            Every story deserves a forever home.
+        </p>
 
-<button class="addBtn" onclick="addItem('promises')">
-Add Promise
-</button>
+        <div class="counter-card">
 
-<div id="promises"></div>
-</div>
+            <h2>Friendship Counter</h2>
 
-<!-- Words -->
-<div class="card">
-<h2>📝 Special Words</h2>
+            <input type="date" id="friendshipDate">
 
-<textarea id="wordText" placeholder="Special quote or words..."></textarea>
+            <button onclick="calculateFriendshipDays()">
+                Calculate
+            </button>
 
-<button class="addBtn" onclick="addItem('words')">
-Add Words
-</button>
+            <h3 id="daysResult">
+                Choose a date ❤️
+            </h3>
 
-<div id="words"></div>
-</div>
+        </div>
 
-<!-- Poetry -->
-<div class="card">
-<h2>📖 Poetry Corner</h2>
+    </div>
 
-<input id="poemTitle" placeholder="Poem Title">
+</section>
 
-<textarea id="poemText" placeholder="Write your poem..."></textarea>
+<!-- STORY -->
 
-<button class="addBtn" onclick="addItem('poems')">
-Add Poem
-</button>
+<section id="story" class="section">
 
-<div id="poems"></div>
-</div>
+    <h2 class="section-title">
+        📖 Our Story
+    </h2>
 
-<!-- Letters -->
-<div class="card">
-<h2>💌 Letters</h2>
+    <div class="timeline">
 
-<input id="letterTitle" placeholder="Letter Title">
+        <div class="timeline-card">
+            <h3>Beginning</h3>
+            <p>
+                Write the story of how your friendship started.
+            </p>
+        </div>
 
-<textarea id="letterText" placeholder="Write a letter..."></textarea>
+        <div class="timeline-card">
+            <h3>Favorite Memory</h3>
+            <p>
+                Add your best moment together.
+            </p>
+        </div>
 
-<button class="addBtn" onclick="addItem('letters')">
-Add Letter
-</button>
+        <div class="timeline-card">
+            <h3>Future Dreams</h3>
+            <p>
+                Things you want to do together.
+            </p>
+        </div>
 
-<div id="letters"></div>
-</div>
+    </div>
 
-<!-- Friendship Counter -->
-<div class="card">
-<h2>❤️ Friendship Counter</h2>
+</section>
 
-<input type="date" id="friendSince">
+<!-- POETRY -->
 
-<button class="addBtn" onclick="calculateDays()">
-Calculate
-</button>
+<section id="poetry" class="section">
 
-<h3 id="daysResult" style="margin-top:15px;"></h3>
+    <h2 class="section-title">
+        🌹 Poetry Garden
+    </h2>
 
-</div>
+    <div class="add-card">
 
-</div>
+        <input
+            type="text"
+            id="poemTitle"
+            placeholder="Poem Title">
+
+        <textarea
+            id="poemText"
+            placeholder="Write your poem here..."></textarea>
+
+        <button onclick="addPoem()">
+            Add Poem
+        </button>
+
+    </div>
+
+    <div id="poemContainer"
+         class="scrapbook-grid">
+    </div>
+
+</section>
+
+<!-- LETTERS -->
+
+<section id="letters" class="section">
+
+    <h2 class="section-title">
+        💌 Secret Letters
+    </h2>
+
+    <div class="add-card">
+
+        <input
+            type="text"
+            id="letterTitle"
+            placeholder="Letter Title">
+
+        <textarea
+            id="letterText"
+            placeholder="Write a special letter..."></textarea>
+
+        <button onclick="addLetter()">
+            Save Letter
+        </button>
+
+    </div>
+
+    <div id="letterContainer"
+         class="scrapbook-grid">
+    </div>
+
+</section>
+
+<!-- PROMISES -->
+
+<section id="promises" class="section">
+
+    <h2 class="section-title">
+        🤝 Promise Wall
+    </h2>
+
+    <div class="add-card">
+
+        <input
+            type="text"
+            id="promiseText"
+            placeholder="Enter a promise">
+
+        <button onclick="addPromise()">
+            Add Promise
+        </button>
+
+    </div>
+
+    <div id="promiseContainer"
+         class="promise-grid">
+    </div>
+
+</section>
+
+<!-- GALLERY -->
+
+<section id="gallery" class="section">
+
+    <h2 class="section-title">
+        📸 Memory Gallery
+    </h2>
+
+    <div class="gallery-grid">
+
+        <div class="gallery-card">
+            <img src="https://picsum.photos/400/300?1">
+            <p>Your memory caption here</p>
+        </div>
+
+        <div class="gallery-card">
+            <img src="https://picsum.photos/400/300?2">
+            <p>Your memory caption here</p>
+        </div>
+
+        <div class="gallery-card">
+            <img src="https://picsum.photos/400/300?3">
+            <p>Your memory caption here</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- TIME CAPSULE -->
+
+<section id="capsule" class="section">
+
+    <h2 class="section-title">
+        🌙 Time Capsule
+    </h2>
+
+    <div class="capsule-box">
+
+        <textarea
+            id="capsuleMessage"
+            placeholder="Write a message for the future..."></textarea>
+
+        <input
+            type="date"
+            id="capsuleDate">
+
+        <button onclick="saveCapsule()">
+            Lock Capsule
+        </button>
+
+        <div id="capsuleDisplay">
+        </div>
+
+    </div>
+
+</section>
+
+<!-- MUSIC -->
+
+<section class="section">
+
+    <h2 class="section-title">
+        🎵 Music Corner
+    </h2>
+
+    <div class="music-box">
+
+        <audio controls>
+
+            <source
+                src="music/song.mp3"
+                type="audio/mpeg">
+
+        </audio>
+
+        <p>
+            Add your favorite song inside:
+            <br>
+            <strong>music/song.mp3</strong>
+        </p>
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
 
 <footer>
-Made with ❤️ for friendship memories
+
+    <h2>
+        ❤️ Forever Memories ❤️
+    </h2>
+
+    <p>
+        Built with friendship, memories and stories.
+    </p>
+
 </footer>
 
-</div>
-
-<script>
-
-let db = JSON.parse(localStorage.getItem("vault")) || {
-dates:[],
-promises:[],
-words:[],
-poems:[],
-letters:[]
-};
-
-function save(){
-localStorage.setItem("vault",JSON.stringify(db));
-render();
-}
-
-function addItem(type){
-
-if(type==="dates"){
-let title=document.getElementById("dateTitle").value;
-let date=document.getElementById("dateValue").value;
-
-if(!title||!date) return;
-
-db.dates.push(`${title} - ${date}`);
-}
-
-if(type==="promises"){
-let text=document.getElementById("promiseText").value;
-if(!text) return;
-db.promises.push(text);
-}
-
-if(type==="words"){
-let text=document.getElementById("wordText").value;
-if(!text) return;
-db.words.push(text);
-}
-
-if(type==="poems"){
-let title=document.getElementById("poemTitle").value;
-let text=document.getElementById("poemText").value;
-
-if(!title||!text) return;
-
-db.poems.push(`<b>${title}</b><br><br>${text}`);
-}
-
-if(type==="letters"){
-let title=document.getElementById("letterTitle").value;
-let text=document.getElementById("letterText").value;
-
-if(!title||!text) return;
-
-db.letters.push(`<b>${title}</b><br><br>${text}`);
-}
-
-save();
-clearInputs();
-}
-
-function clearInputs(){
-document.querySelectorAll("input,textarea").forEach(el=>{
-if(el.id!=="friendSince") el.value="";
-});
-}
-
-function render(){
-
-["dates","promises","words","poems","letters"].forEach(type=>{
-
-let container=document.getElementById(type);
-
-container.innerHTML="";
-
-db[type].forEach((item,index)=>{
-
-container.innerHTML+=`
-<div class="item">
-<button class="delete"
-onclick="deleteItem('${type}',${index})">
-X
-</button>
-${item}
-</div>
-`;
-
-});
-});
-}
-
-function deleteItem(type,index){
-db[type].splice(index,1);
-save();
-}
-
-function calculateDays(){
-
-let date=document.getElementById("friendSince").value;
-
-if(!date) return;
-
-let start=new Date(date);
-let today=new Date();
-
-let diff=Math.floor(
-(today-start)/(1000*60*60*24)
-);
-
-document.getElementById("daysResult").innerText=
-`Friends for ${diff} days ❤️`;
-}
-
-function toggleTheme(){
-document.body.classList.toggle("light");
-}
-
-render();
-
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
