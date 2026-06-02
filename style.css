@@ -303,3 +303,98 @@ grid-template-columns:1fr;
 }
 
 }
+/* ==========================
+COUNTERS PAGE
+========================== */
+
+.counter-page{
+
+max-width:1000px;
+
+margin:auto;
+
+padding:80px 20px;
+
+}
+
+.counter-page h1{
+
+text-align:center;
+
+font-size:3rem;
+
+margin-bottom:50px;
+
+}
+
+.counter-card{
+
+background:
+rgba(20,20,40,.85);
+
+padding:30px;
+
+border-radius:25px;
+
+margin-bottom:35px;
+
+text-align:center;
+
+border:
+1px solid rgba(255,255,255,.1);
+
+box-shadow:
+0 0 20px rgba(255,79,216,.25);
+
+}
+
+.counter-card h2{
+
+margin-bottom:20px;
+
+}
+
+#kissCount,
+#hugCount{
+
+font-size:3rem;
+
+margin-bottom:15px;
+
+}
+
+.days-grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(220px,1fr));
+
+gap:20px;
+
+margin-top:40px;
+
+}
+
+.day-card{
+
+background:
+rgba(255,255,255,.08);
+
+padding:25px;
+
+border-radius:20px;
+
+text-align:center;
+
+backdrop-filter:blur(15px);
+
+}
+
+.day-card h3{
+
+margin-bottom:15px;
+
+color:#ff9df0;
+
+}
