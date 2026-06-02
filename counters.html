@@ -2,16 +2,12 @@
 <html lang="en">
 
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Counters ❤️</title>
 
-<link rel="stylesheet"
-href="style.css">
-
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -19,28 +15,18 @@ href="style.css">
 <div id="stars"></div>
 
 <nav>
-
 <a href="index.html">🏠 Home</a>
-
 <a href="timeline.html">📅 Timeline</a>
-
 <a href="messages.html">💌 Messages</a>
-
 <a href="poetry.html">🌹 Poetry</a>
-
 <a href="gallery.html">📸 Gallery</a>
-
 <a href="birthday.html">🎂 Birthday</a>
-
 <a href="capsule.html">🌙 Capsule</a>
-
 </nav>
 
 <section class="counter-page">
 
-<h1>
-😘 & 🫂 Counters ❤️
-</h1>
+<h1>😘 & 🫂 Love Counters ❤️</h1>
 
 <!-- KISS -->
 
@@ -48,25 +34,27 @@ href="style.css">
 
 <h2>😘 Kiss Counter</h2>
 
-<div id="kissCount">
-1 😘
+<div id="kissCount" class="big-counter">
+1
 </div>
+
+<div id="kissEmojis" class="emoji-row"></div>
 
 <p>
 SWEET FOR HIM AND BITTER FOR HER.....😁🤤😘
 </p>
 
-<label>
-Last Updated
-</label>
+<div class="counter-buttons">
 
-<input
-type="date"
-id="kissDate">
-
-<button onclick="saveKissDate()">
-Save
+<button onclick="changeKiss(-1)">
+➖
 </button>
+
+<button onclick="changeKiss(1)">
+➕
+</button>
+
+</div>
 
 <div id="kissUpdated"></div>
 
@@ -78,72 +66,54 @@ Save
 
 <h2>🫂 Hug Counter</h2>
 
-<div id="hugCount">
-1 🫂
+<div id="hugCount" class="big-counter">
+1
 </div>
+
+<div id="hugEmojis" class="emoji-row"></div>
 
 <p>
 WE WANT MORE...🫂🤤
 </p>
 
-<label>
-Last Updated
-</label>
+<div class="counter-buttons">
 
-<input
-type="date"
-id="hugDate">
-
-<button onclick="saveHugDate()">
-Save
+<button onclick="changeHug(-1)">
+➖
 </button>
+
+<button onclick="changeHug(1)">
+➕
+</button>
+
+</div>
 
 <div id="hugUpdated"></div>
 
 </div>
 
-<!-- SPECIAL DAY COUNTERS -->
+<!-- RELATIONSHIP DAYS -->
 
 <div class="days-grid">
 
 <div class="day-card">
-
-<h3>
-❤️ Proposal
-</h3>
-
+<h3>❤️ Proposal</h3>
 <div id="proposalDays"></div>
-
 </div>
 
 <div class="day-card">
-
-<h3>
-❤️ She Said Yes
-</h3>
-
+<h3>❤️ She Said Yes</h3>
 <div id="yesDays"></div>
-
 </div>
 
 <div class="day-card">
-
-<h3>
-😘 First Kiss
-</h3>
-
+<h3>😘 First Kiss</h3>
 <div id="kissDays"></div>
-
 </div>
 
 <div class="day-card">
-
-<h3>
-🫂 First Hug
-</h3>
-
+<h3>🫂 First Hug</h3>
 <div id="hugDays"></div>
-
 </div>
 
 </div>
