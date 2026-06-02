@@ -74,3 +74,169 @@ Math.floor(Math.random()*quotes.length)
 ];
 
 }
+/* ==========================
+MESSAGES STORAGE
+========================== */
+
+let herMessages =
+JSON.parse(
+localStorage.getItem("herMessages")
+) || [];
+
+let myMessages =
+JSON.parse(
+localStorage.getItem("myMessages")
+) || [];
+
+/* HER */
+
+function addHerMessage(){
+
+const title =
+document.getElementById("herTitle").value;
+
+const message =
+document.getElementById("herMessage").value;
+
+if(!title || !message) return;
+
+herMessages.push({
+title,
+message
+});
+
+localStorage.setItem(
+"herMessages",
+JSON.stringify(herMessages)
+);
+
+document.getElementById("herTitle").value="";
+document.getElementById("herMessage").value="";
+
+renderHerMessages();
+
+}
+
+/* MY */
+
+function addMyMessage(){
+
+const title =
+document.getElementById("myTitle").value;
+
+const message =
+document.getElementById("myMessage").value;
+
+if(!title || !message) return;
+
+myMessages.push({
+title,
+message
+});
+
+localStorage.setItem(
+"myMessages",
+JSON.stringify(myMessages)
+);
+
+document.getElementById("myTitle").value="";
+document.getElementById("myMessage").value="";
+
+renderMyMessages();
+
+}
+
+function renderHerMessages(){
+
+const container =
+document.getElementById("herMessages");
+
+if(!container) return;
+
+container.innerHTML="";
+
+herMessages.forEach((item,index)=>{
+
+container.innerHTML += `
+<div class="letter-card">
+
+<h3>${item.title}</h3>
+
+<p>${item.message}</p>
+
+<button
+class="delete-message"
+onclick="deleteHerMessage(${index})">
+
+Delete
+
+</button>
+
+</div>
+`;
+
+});
+
+}
+
+function renderMyMessages(){
+
+const container =
+document.getElementById("myMessages");
+
+if(!container) return;
+
+container.innerHTML="";
+
+myMessages.forEach((item,index)=>{
+
+container.innerHTML += `
+<div class="letter-card">
+
+<h3>${item.title}</h3>
+
+<p>${item.message}</p>
+
+<button
+class="delete-message"
+onclick="deleteMyMessage(${index})">
+
+Delete
+
+</button>
+
+</div>
+`;
+
+});
+
+}
+
+function deleteHerMessage(index){
+
+herMessages.splice(index,1);
+
+localStorage.setItem(
+"herMessages",
+JSON.stringify(herMessages)
+);
+
+renderHerMessages();
+
+}
+
+function deleteMyMessage(index){
+
+myMessages.splice(index,1);
+
+localStorage.setItem(
+"myMessages",
+JSON.stringify(myMessages)
+);
+
+renderMyMessages();
+
+}
+
+renderHerMessages();
+renderMyMessages();
