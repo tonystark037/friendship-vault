@@ -526,3 +526,54 @@ color:#ff9df0;
 margin-bottom:15px;
 
 }
+/* ==========================
+TIMELINE MANAGER
+========================== */
+
+.timeline-form{
+
+background:rgba(20,20,40,.85);
+
+padding:25px;
+
+border-radius:20px;
+
+margin-bottom:50px;
+
+display:flex;
+
+flex-direction:column;
+
+gap:15px;
+
+}
+
+.timeline-form textarea{
+
+height:120px;
+
+padding:12px;
+
+border:none;
+
+border-radius:12px;
+
+}
+
+.timeline-delete{
+
+margin-top:15px;
+
+background:#ff4d6d;
+
+}
+
+.timeline-date{
+
+color:#ff9df0;
+
+font-size:1.2rem;
+
+margin-bottom:10px;
+
+}
