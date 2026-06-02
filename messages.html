@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Special Messages 💌</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div id="stars"></div>
+
+<nav>
+
+<a href="index.html">🏠 Home</a>
+
+<a href="timeline.html">📅 Timeline</a>
+
+<a href="poetry.html">🌹 Poetry</a>
+
+<a href="gallery.html">📸 Gallery</a>
+
+<a href="counters.html">😘 Counters</a>
+
+<a href="birthday.html">🎂 Birthday</a>
+
+<a href="capsule.html">🌙 Capsule</a>
+
+</nav>
+
+<section class="messages-page">
+
+<h1>💌 Special Messages ❤️</h1>
+
+<div class="message-inputs">
+
+<div class="input-box">
+
+<h2>Praniti's Message ❤️</h2>
+
+<input
+type="text"
+id="herTitle"
+placeholder="Title">
+
+<textarea
+id="herMessage"
+placeholder="Write message..."></textarea>
+
+<button onclick="addHerMessage()">
+Save Message ❤️
+</button>
+
+</div>
+
+<div class="input-box">
+
+<h2>Your Message ❤️</h2>
+
+<input
+type="text"
+id="myTitle"
+placeholder="Title">
+
+<textarea
+id="myMessage"
+placeholder="Write message..."></textarea>
+
+<button onclick="addMyMessage()">
+Save Message ❤️
+</button>
+
+</div>
+
+</div>
+
+<div class="messages-layout">
+
+<div>
+
+<h2 class="side-title">
+🌹 Praniti's Letters
+</h2>
+
+<div id="herMessages"></div>
+
+</div>
+
+<div>
+
+<h2 class="side-title">
+❤️ Atharva's Letters
+</h2>
+
+<div id="myMessages"></div>
+
+</div>
+
+</div>
+
+</section>
+
+<script src="script.js"></script>
+
+</body>
+</html>
