@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Friendship Memory Vault</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#0f172a,#1e293b);
+color:white;
+min-height:100vh;
+padding:20px;
+transition:.4s;
+}
+
+.light{
+background:linear-gradient(135deg,#f1f5f9,#cbd5e1);
+color:#111;
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+}
+
+header{
+text-align:center;
+margin-bottom:30px;
+}
+
+header h1{
+font-size:3rem;
+margin-bottom:10px;
+}
+
+header p{
+opacity:.8;
+}
+
+.toggle{
+position:fixed;
+top:20px;
+right:20px;
+padding:10px 15px;
+border:none;
+border-radius:12px;
+cursor:pointer;
+font-size:16px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:20px;
+}
+
+.card{
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(12px);
+border-radius:20px;
+padding:20px;
+box-shadow:0 8px 20px rgba(0,0,0,.3);
+}
+
+.light .card{
+background:white;
+}
+
+.card h2{
+margin-bottom:15px;
+}
+
+input,textarea{
+width:100%;
+padding:12px;
+margin:8px 0;
+border:none;
+border-radius:10px;
+outline:none;
+}
+
+button{
+padding:10px 15px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+font-weight:bold;
+}
+
+.addBtn{
+background:#22c55e;
+color:white;
+margin-top:5px;
+}
+
+.item{
+background:rgba(255,255,255,0.12);
+padding:12px;
+margin-top:10px;
+border-radius:12px;
+position:relative;
+word-wrap:break-word;
+}
+
+.light .item{
+background:#e2e8f0;
+}
+
+.delete{
+position:absolute;
+right:10px;
+top:10px;
+background:red;
+color:white;
+padding:4px 8px;
+font-size:12px;
+}
+
+footer{
+text-align:center;
+margin-top:40px;
+opacity:.7;
+}
+</style>
+</head>
+<body>
+
+<button class="toggle" onclick="toggleTheme()">🌙 Theme</button>
+
+<div class="container">
+
+<header>
+<h1>❤️ Friendship Memory Vault ❤️</h1>
+<p>A place for memories, promises, poems and special moments.</p>
+</header>
+
+<div class="grid">
+
+<!-- Dates -->
+<div class="card">
+<h2>📅 Special Dates</h2>
+
+<input id="dateTitle" placeholder="Event Name">
+<input id="dateValue" type="date">
+
+<button class="addBtn" onclick="addItem('dates')">
+Add Date
+</button>
+
+<div id="dates"></div>
+</div>
+
+<!-- Promises -->
+<div class="card">
+<h2>🤝 Promises</h2>
+
+<textarea id="promiseText" placeholder="Write a promise..."></textarea>
+
+<button class="addBtn" onclick="addItem('promises')">
+Add Promise
+</button>
+
+<div id="promises"></div>
+</div>
+
+<!-- Words -->
+<div class="card">
+<h2>📝 Special Words</h2>
+
+<textarea id="wordText" placeholder="Special quote or words..."></textarea>
+
+<button class="addBtn" onclick="addItem('words')">
+Add Words
+</button>
+
+<div id="words"></div>
+</div>
+
+<!-- Poetry -->
+<div class="card">
+<h2>📖 Poetry Corner</h2>
+
+<input id="poemTitle" placeholder="Poem Title">
+
+<textarea id="poemText" placeholder="Write your poem..."></textarea>
+
+<button class="addBtn" onclick="addItem('poems')">
+Add Poem
+</button>
+
+<div id="poems"></div>
+</div>
+
+<!-- Letters -->
+<div class="card">
+<h2>💌 Letters</h2>
+
+<input id="letterTitle" placeholder="Letter Title">
+
+<textarea id="letterText" placeholder="Write a letter..."></textarea>
+
+<button class="addBtn" onclick="addItem('letters')">
+Add Letter
+</button>
+
+<div id="letters"></div>
+</div>
+
+<!-- Friendship Counter -->
+<div class="card">
+<h2>❤️ Friendship Counter</h2>
+
+<input type="date" id="friendSince">
+
+<button class="addBtn" onclick="calculateDays()">
+Calculate
+</button>
+
+<h3 id="daysResult" style="margin-top:15px;"></h3>
+
+</div>
+
+</div>
+
+<footer>
+Made with ❤️ for friendship memories
+</footer>
+
+</div>
+
+<script>
+
+let db = JSON.parse(localStorage.getItem("vault")) || {
+dates:[],
+promises:[],
+words:[],
+poems:[],
+letters:[]
+};
+
+function save(){
+localStorage.setItem("vault",JSON.stringify(db));
+render();
+}
+
+function addItem(type){
+
+if(type==="dates"){
+let title=document.getElementById("dateTitle").value;
+let date=document.getElementById("dateValue").value;
+
+if(!title||!date) return;
+
+db.dates.push(`${title} - ${date}`);
+}
+
+if(type==="promises"){
+let text=document.getElementById("promiseText").value;
+if(!text) return;
+db.promises.push(text);
+}
+
+if(type==="words"){
+let text=document.getElementById("wordText").value;
+if(!text) return;
+db.words.push(text);
+}
+
+if(type==="poems"){
+let title=document.getElementById("poemTitle").value;
+let text=document.getElementById("poemText").value;
+
+if(!title||!text) return;
+
+db.poems.push(`<b>${title}</b><br><br>${text}`);
+}
+
+if(type==="letters"){
+let title=document.getElementById("letterTitle").value;
+let text=document.getElementById("letterText").value;
+
+if(!title||!text) return;
+
+db.letters.push(`<b>${title}</b><br><br>${text}`);
+}
+
+save();
+clearInputs();
+}
+
+function clearInputs(){
+document.querySelectorAll("input,textarea").forEach(el=>{
+if(el.id!=="friendSince") el.value="";
+});
+}
+
+function render(){
+
+["dates","promises","words","poems","letters"].forEach(type=>{
+
+let container=document.getElementById(type);
+
+container.innerHTML="";
+
+db[type].forEach((item,index)=>{
+
+container.innerHTML+=`
+<div class="item">
+<button class="delete"
+onclick="deleteItem('${type}',${index})">
+X
+</button>
+${item}
+</div>
+`;
+
+});
+});
+}
+
+function deleteItem(type,index){
+db[type].splice(index,1);
+save();
+}
+
+function calculateDays(){
+
+let date=document.getElementById("friendSince").value;
+
+if(!date) return;
+
+let start=new Date(date);
+let today=new Date();
+
+let diff=Math.floor(
+(today-start)/(1000*60*60*24)
+);
+
+document.getElementById("daysResult").innerText=
+`Friends for ${diff} days ❤️`;
+}
+
+function toggleTheme(){
+document.body.classList.toggle("light");
+}
+
+render();
+
+</script>
+
+</body>
+</html>
