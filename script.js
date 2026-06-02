@@ -532,3 +532,208 @@ daysSince("2026-03-09") + " Days";
 updateKiss();
 updateHug();
 loadRelationshipCounters();
+/* ==========================
+TIMELINE STORAGE
+========================== */
+
+let timelineEvents =
+JSON.parse(
+localStorage.getItem("timelineEvents")
+) || [
+
+{
+date:"2022-08-02",
+title:"❤️ First Proposal",
+description:"Proposed Praniti at 12:45 PM"
+},
+
+{
+date:"2024-01-29",
+title:"📱 First Instagram Message",
+description:"Messaged her on Instagram at 10:30 PM"
+},
+
+{
+date:"2025-01-15",
+title:"☕ First Meeting",
+description:"Met for the first time for 30 minutes"
+},
+
+{
+date:"2025-01-17",
+title:"🙏 Tuljapur Blessing",
+description:"God's blessing for future together"
+},
+
+{
+date:"2025-10-14",
+title:"❤️ Closeness Feeling",
+description:"Praniti expressed her closeness feeling"
+},
+
+{
+date:"2025-11-03",
+title:"🌹 Longest Date",
+description:"Spent 2.5 hours together"
+},
+
+{
+date:"2025-11-27",
+title:"🎁 Surprise Date",
+description:"Special surprise memory"
+},
+
+{
+date:"2026-01-28",
+title:"🫂 First Virtual Hug",
+description:"First virtual hug"
+},
+
+{
+date:"2026-02-14",
+title:"😘 First Virtual Kiss",
+description:"First virtual kiss"
+},
+
+{
+date:"2026-03-09",
+title:"🫂 First Hug",
+description:"First hug"
+},
+
+{
+date:"2026-03-21",
+title:"❤️ She Said YES",
+description:"Accepted the proposal"
+},
+
+{
+date:"2026-04-02",
+title:"😘 First Kiss",
+description:"First kiss"
+}
+
+];
+
+function saveTimeline(){
+
+localStorage.setItem(
+"timelineEvents",
+JSON.stringify(timelineEvents)
+);
+
+}
+
+function addTimelineEvent(){
+
+const date =
+document.getElementById("eventDate");
+
+const title =
+document.getElementById("eventTitle");
+
+const description =
+document.getElementById("eventDescription");
+
+if(
+!date ||
+!title ||
+!description
+) return;
+
+if(
+!date.value ||
+!title.value ||
+!description.value
+) return;
+
+timelineEvents.push({
+
+date:date.value,
+
+title:title.value,
+
+description:description.value
+
+});
+
+timelineEvents.sort(
+(a,b)=>
+new Date(a.date)
+-
+new Date(b.date)
+);
+
+saveTimeline();
+
+date.value="";
+title.value="";
+description.value="";
+
+renderTimeline();
+
+}
+
+function deleteTimelineEvent(index){
+
+timelineEvents.splice(index,1);
+
+saveTimeline();
+
+renderTimeline();
+
+}
+
+function renderTimeline(){
+
+const container =
+document.getElementById(
+"timelineContainer"
+);
+
+if(!container) return;
+
+container.innerHTML="";
+
+timelineEvents.forEach(
+(event,index)=>{
+
+container.innerHTML += `
+
+<div class="event">
+
+<div class="timeline-date">
+
+${event.date}
+
+</div>
+
+<h2>
+
+${event.title}
+
+</h2>
+
+<p>
+
+${event.description}
+
+</p>
+
+<button
+class="timeline-delete"
+onclick="deleteTimelineEvent(${index})">
+
+Delete
+
+</button>
+
+</div>
+
+`;
+
+});
+
+}
+
+renderTimeline();
