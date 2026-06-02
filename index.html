@@ -1,14 +1,99 @@
 <!DOCTYPE html>
-<html><head><meta charset="utf-8"><title>Atharva ❤️ Praniti</title>
-<link rel="stylesheet" href="style.css"></head>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Atharva ❤️ Praniti</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
 <body>
-<div class="center">
-<h1>Atharva ❤️ Praniti</h1>
-<p>Every memory has a heartbeat.</p>
-<h3 id="q"></h3>
-<input id="a" placeholder="DD/MM/YYYY">
-<button onclick="check()">Unlock</button>
-<p id="m"></p>
+
+<div id="stars"></div>
+
+<div class="lock-screen" id="lockScreen">
+
+    <div class="lock-box">
+
+        <h1>
+            ❤️ Atharva & Praniti ❤️
+        </h1>
+
+        <p>
+            Every memory has a heartbeat.
+            Every heartbeat has a story.
+        </p>
+
+        <h3 id="question">
+            Loading Question...
+        </h3>
+
+        <input
+            type="text"
+            id="answer"
+            placeholder="DD/MM/YYYY">
+
+        <button onclick="checkAnswer()">
+            Unlock Our Journey ❤️
+        </button>
+
+        <p id="error"></p>
+
+    </div>
+
 </div>
+
+<div class="home-page" id="homePage">
+
+<nav>
+
+<a href="timeline.html">Timeline</a>
+
+<a href="messages.html">Messages</a>
+
+<a href="poetry.html">Poetry</a>
+
+<a href="gallery.html">Gallery</a>
+
+<a href="counters.html">Counters</a>
+
+<a href="birthday.html">Birthday</a>
+
+<a href="capsule.html">Capsule</a>
+
+</nav>
+
+<section class="hero">
+
+<h1>
+ATHARVA ❤️ PRANITI
+</h1>
+
+<p>
+A Story Written By Time
+And Protected By Memories
+</p>
+
+<button onclick="showRandomQuote()">
+❤️ Surprise Quote
+</button>
+
+<div id="quoteBox">
+
+"Love is remembering every little moment."
+
+</div>
+
+</section>
+
+</div>
+
 <script src="script.js"></script>
-</body></html>
+
+</body>
+</html>
